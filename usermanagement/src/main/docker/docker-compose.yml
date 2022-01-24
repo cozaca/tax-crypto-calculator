@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+#  app:
+#    image: 'docker-spring-boot-postgres:latest'
+#    build:
+#      context: .
+#    container_name: usermanagement
+#    depends_on:
+#      - usermanagement_db
+#    environment:
+#      - SPRING_DATASOURCE_URL=jdbl:postgresql://usermanagement_db:5432/compose-postgres
+#      - SPRING_DATASOURCE_USERNAME=compose-postgres
+#      - SPRING_DATASOURCE_PASSWORD=compose-postgres
+#      - SPRING-JPA_HIBERNATE_DDL_AUTO=update
+
+  usermanagement_db:
+    image: 'postgres:14.1-alpine'
+    container_name: usermanagement_db
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ../init_data/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: always
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=cozac.adrian@ymail.com
+      - PGADMIN_DEFAULT_PASSWORD=root
+    ports:
+      - "5050:80"
+volumes:
+  postgres_data:
