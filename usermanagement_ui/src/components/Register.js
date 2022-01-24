@@ -56,17 +56,17 @@ const Register = (props) => {
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
 
-  const onChangeUsername = (e) => {
+  const changeUsername = (e) => {
     const username = e.target.value;
     setUsername(username);
   };
 
-  const onChangeEmail = (e) => {
+  const changeEmail = (e) => {
     const email = e.target.value;
     setEmail(email);
   };
 
-  const onChangePassword = (e) => {
+  const changePassword = (e) => {
     const password = e.target.value;
     setPassword(password);
   };
@@ -119,7 +119,7 @@ const Register = (props) => {
                   className="form-control"
                   name="username"
                   value={username}
-                  onChange={onChangeUsername}
+                  onChange={changeUsername}
                   validations={[required, vusername]}
                 />
               </div>
@@ -131,7 +131,7 @@ const Register = (props) => {
                   className="form-control"
                   name="email"
                   value={email}
-                  onChange={onChangeEmail}
+                  onChange={changeEmail}
                   validations={[required, validEmail]}
                 />
               </div>
@@ -143,7 +143,7 @@ const Register = (props) => {
                   className="form-control"
                   name="password"
                   value={password}
-                  onChange={onChangePassword}
+                  onChange={changePassword}
                   validations={[required, vpassword]}
                 />
               </div>

@@ -13,6 +13,7 @@ import BoardUser from "./components/BoardUser";
 import BoardModerator from "./components/BoardModerator";
 import BoardAdmin from "./components/BoardAdmin";
 
+import WithRouter from "./common/WithRouter";
 // import AuthVerify from "./common/AuthVerify";
 import EventBus from "./common/EventBus";
 
@@ -50,7 +51,7 @@ const App = () => {
     <div>
       <nav className="navbar navbar-expand navbar-dark bg-dark">
         <Link to={"/"} className="navbar-brand">
-          bezKoder
+          CoZ
         </Link>
         <div className="navbar-nav mr-auto">
           <li className="nav-item">
@@ -116,7 +117,7 @@ const App = () => {
 
       <div className="container mt-3">
         <Routes>
-          <Route exact path="/" element={<Home/>} />
+          <Route exact path="/home" element={<Home/>} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/register" element={<Register />} />
           <Route exact path="/profile" element={<Profile />} />

@@ -3,6 +3,7 @@ import AuthService from "../services/auth.service";
 
 const Profile = () => {
   const currentUser = AuthService.getCurrentUser();
+  console.log("### My username : " + currentUser);
 
   return (
     <div className="container">
