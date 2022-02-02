@@ -15,3 +15,6 @@ postgres server is available. In order to find this you need to run in a CMD : `
 
 ## Details about web-security impl used in this app:
     - `@EnableWebSecurity` => allows Spring tot and automatically apply the class to global `WebSecurity`
+
+## Spring Security JWT with Spring Boot
+![spring-boot-security-jwt-architecture, reference: https://www.bezkoder.com/spring-boot-jwt-mysql-spring-security-architecture/](documentation/img/spring-boot-jwt-mysql-spring-security-architecture.png)

@@ -1,14 +1,10 @@
 package com.acozac.usermanagement.security.jwt;
 
 import java.util.Date;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Component;
-import org.springframework.web.util.WebUtils;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
@@ -26,28 +22,10 @@ public class JwtUtils
     private String jwtSecret;
     @Value("${acozac.app.jwtExpirationMs}")
     private int jwtExpirationMs;
-    @Value("${acozac.app.jwtCookie}")
-    private String jwtCookie;
 
-    public String getJwtFromCookies(HttpServletRequest request)
+    public String generateJwtToken(UserDetailsImpl userPrincipal)
     {
-        Cookie cookie = WebUtils.getCookie(request, jwtCookie);
-        if (cookie != null)
-        {
-            return cookie.getValue();
-        }
-        return null;
-    }
-
-    public ResponseCookie generateJwtCookie(UserDetailsImpl userPrincipal)
-    {
-        String jwt = generateTokenFromUsername(userPrincipal.getUsername());
-        return ResponseCookie.from(jwtCookie, jwt).path("/api").maxAge(24 * 60 * 60).httpOnly(true).build();
-    }
-
-    public ResponseCookie getCleanJwtCookie()
-    {
-        return ResponseCookie.from(jwtCookie, null).path("/api").build();
+        return generateTokenFromUsername(userPrincipal.getUsername());
     }
 
     public String getUsernameFromJwtToken(String token)
